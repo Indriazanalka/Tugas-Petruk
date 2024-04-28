@@ -1,0 +1,207 @@
+//Kelompok 6
+//Indriazan Alkautsar (2317051074)
+//Lutfi Harya Ferdian (2317051096)
+//Pandita Lasmana (2357051021)
+
+//Dikerjakan oleh Indriazan Alkautsar
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+bool findHorizontal(const vector<vector<char>>& matriks, const string& word) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int a = 0; a < baris; ++a) {
+        for (int b = 0; b <= kolom - word.length(); ++b) {
+            bool found = true;
+            for (int n = 0; n < word.length(); ++n) {
+                if (matriks[a][b + n] != word[n]) {
+                    found = false;
+                    break;
+                }if (matriks[a][b + n] != word[n]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool findVertikal(const vector<vector<char>>& matriks, const string& word) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+    
+    for (int b = 0; b < kolom; ++b) {
+        for (int a = 0; a <= baris - word.length(); ++a) {
+            bool found = true;
+            for (int n = 0; n < word.length(); ++n) {
+                if (matriks[a + n][b] != word[n]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    
+for (int b = 0; b < kolom; ++b) {
+        for (int a = baris - 1; a >= word.length() - 1; --a) {
+            bool found = true;
+            for (int n = 0; n < word.length(); ++n) {
+                if (matriks[a - n][b] != word[n]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+//Dikerjakan Oleh Lutfi Harya Ferdian
+
+bool findDiagonalKananBawah(const vector<vector<char>>& matriks, const string& word) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int a = 0; a <= baris - word.length(); ++a) {
+        for (int b = 0; b <= kolom - word.length(); ++b) {
+            bool found = true;
+            for (int n = 0; n < word.length(); ++n) {
+                if (matriks[a + n][b + n] != word[n]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+bool findDiagonalKananAtas(const vector<vector<char>>& matriks, const string& word) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int a = word.length() - 1; a < baris; ++a) {
+        for (int b = word.length() - 1; b < kolom; ++b) {
+            bool found = true;
+            for (int n = 0; n < word.length(); ++n) {
+                if (a - n < 0 || b - n < 0 || matriks[a - n][b - n] != word[n]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+bool findDiagonalKiriBawah(const vector<vector<char>>& matriks, const string& word) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int a = 0; a <= baris - word.length(); ++a) {
+        for (int b = word.length() - 1; b < kolom; ++b) {
+            bool found = true;
+            for (int n = 0; n < word.length(); ++n) {
+                if (a + n >= baris || b - n < 0 || matriks[a + n][b - n] != word[n]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+bool findDiagonalKiriAtas(const vector<vector<char>>& matriks, const string& word) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int a = word.length() - 1; a < baris; ++a) {
+        for (int b = 0; b <= kolom - word.length(); ++b) {
+            bool found = true;
+            for (int n = 0; n < word.length(); ++n) {
+                if (a - n < 0 || matriks[a - n][b + n] != word[n]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+//Dikerjakan Oleh Pandita Lasmana
+
+bool findWord(const vector<vector<char>>& matriks, const string& word) {
+    if (findHorizontal(matriks, word) || findVertikal(matriks, word) || findDiagonalKananBawah(matriks, word) || findDiagonalKiriBawah(matriks, word) || findDiagonalKananAtas(matriks, word) || findDiagonalKiriAtas(matriks, word))
+        return true;
+    else
+        return false;
+}
+
+int main() {
+    vector<vector<char>> matriks = {
+        {'A', 'A', 'F', 'L', 'K', 'H', 'P', 'F', 'S', 'S', 'U', 'F', 'I', 'C', 'I', 'C', 'L', 'E', 'S', 'G', 'N', 'N', 'H'},
+        {'S', 'F', 'V', 'R', 'E', 'O', 'M', 'R', 'W', 'L', 'R', 'T', 'T', 'S', 'X', 'O', 'Q', 'Q', 'N', 'A', 'O', 'A', 'O'},
+        {'Q', 'E', 'I', 'A', 'I', 'F', 'X', 'A', 'E', 'I', 'R', 'F', 'V', 'F', 'Y', 'S', 'X', 'I', 'M', 'I', 'N', 'J', 'I'},
+        {'W', 'S', 'T', 'R', 'L', 'G', 'O', 'C', 'A', 'P', 'B', 'I', 'A', 'F', 'I', 'W', 'I', 'W', 'T', 'U', 'A', 'C', 'M'},
+        {'F', 'E', 'Y', 'A', 'E', 'A', 'I', 'S', 'T', 'P', 'C', 'R', 'L', 'U', 'J', 'K', 'O', 'A', 'K', 'C', 'E', 'R', 'S'},
+        {'R', 'V', 'D', 'A', 'K', 'P', 'N', 'D', 'E', 'E', 'H', 'D', 'E', 'M', 'S', 'N', 'C', 'K', 'K', 'F', 'O', 'A', 'H'},
+        {'M', 'R', 'N', 'E', 'D', 'S', 'L', 'C', 'R', 'R', 'I', 'W', 'N', 'R', 'S', 'A', 'A', 'F', 'I', 'T', 'M', 'M', 'I'},
+        {'Y', 'A', 'A', 'E', 'C', 'I', 'E', 'A', 'H', 'Y', 'M', 'O', 'T', 'A', 'V', 'H', 'R', 'S', 'S', 'T', 'I', 'S', 'B'},
+        {'R', 'J', 'S', 'E', 'W', 'E', 'L', 'C', 'C', 'E', 'N', 'N', 'I', 'E', 'T', 'O', 'H', 'W', 'S', 'G', 'L', 'S', 'E'},
+        {'A', 'T', 'A', 'N', 'Y', 'Y', 'M', 'O', 'I', 'E', 'E', 'S', 'N', 'E', 'S', 'I', 'O', 'I', 'R', 'E', 'L', 'T', 'R'},
+        {'U', 'T', 'E', 'N', 'E', 'W', 'E', 'B', 'H', 'M', 'Y', 'B', 'E', 'T', 'N', 'N', 'R', 'A', 'I', 'E', 'B', 'E', 'N'},
+        {'R', 'C', 'L', 'K', 'U', 'T', 'E', 'A', 'E', 'Q', 'J', 'L', 'S', 'G', 'S', 'H', 'T', 'G', 'D', 'S', 'K', 'O', 'A'},
+        {'B', 'H', 'O', 'I', 'C', 'A', 'T', 'N', 'R', 'R', 'S', 'D', 'D', 'E', 'C', 'E', 'H', 'O', 'O', 'L', 'G', 'I', 'T'},
+        {'E', 'N', 'S', 'L', 'U', 'A', 'R', 'I', 'R', 'S', 'E', 'T', 'A', 'L', 'O', 'C', 'O', 'H', 'C', 'T', 'O', 'H', 'E'},
+        {'F', 'Z', 'F', 'U', 'D', 'Q', 'J', 'Y', 'M', 'A', 'D', 'O', 'Y', 'I', 'W', 'Y', 'G', 'L', 'O', 'V', 'E', 'S', 'U'},
+        {'T', 'E', 'K', 'A', 'L', 'F', 'W', 'O', 'N', 'S', 'N', 'A', 'E', 'B', 'M', 'I', 'E', 'J', 'T', 'Z', 'N', 'T', 'G'},
+        {'E', 'S', 'W', 'P', 'O', 'S', 'J', 'X', 'E', 'U', 'T', 'U', 'Y', 'O', 'Z', 'U', 'W', 'A', 'K', 'E', 'Z', 'H', 'M'},
+        {'K', 'Z', 'U', 'H', 'B', 'P', 'E', 'Z', 'E', 'E', 'R', 'F', 'L', 'M', 'S', 'N', 'O', 'W', 'B', 'A', 'L', 'L', 'H'},
+        {'N', 'S', 'N', 'O', 'W', 'B', 'O', 'A', 'R', 'D', 'Y', 'T', 'V', 'W', 'Y', 'C', 'L', 'E', 'V', 'O', 'H', 'S', 'A'},
+        {'A', 'C', 'O', 'C', 'R', 'Q', 'L', 'G', 'Z', 'I', 'Y', 'C', 'H', 'O', 'D', 'R', 'A', 'Z', 'Z', 'I', 'L', 'B', 'I'},
+        {'L', 'B', 'V', 'K', 'K', 'W', 'A', 'N', 'Z', 'A', 'A', 'Q', 'I', 'N', 'W', 'O', 'L', 'P', 'W', 'O', 'N', 'S', 'L'},
+        {'B', 'F', 'R', 'E', 'E', 'Z', 'I', 'N', 'G', 'R', 'A', 'I', 'N', 'S', 'L', 'I', 'L', 'G', 'T', 'M', 'E', 'L', 'T'},
+        {'H', 'Q', 'P', 'Y', 'L', 'W', 'H', 'E', 'M', 'N', 'E', 'F', 'U', 'F', 'P', 'S', 'W', 'X', 'N', 'U', 'M', 'M', 'V'}
+    };
+
+    int q;
+    cin >> q;
+
+    for (int a = 0; a < q; ++a) {
+        string word;
+        cin >> word;
+
+        if (findWord(matriks, word))
+            cout << "Ada" << endl;
+        else
+            cout << "Tidak Ada" << endl;
+    }
+
+    return 0;
+}
