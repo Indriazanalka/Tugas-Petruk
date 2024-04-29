@@ -3,7 +3,7 @@
 //Lutfi Harya Ferdian (2317051096)
 //Pandita Lasmana (2357051021)
 
-//Dikerjakan oleh Indriazan Alkautsar
+//Dikerjakan oleh Lutfi Harya Ferdian
 
 #include <iostream>
 #include <vector>
@@ -68,10 +68,10 @@ for (int b = 0; b < kolom; ++b) {
             }
         }
     }
-    return false;
+   Â returnÂ false;
 }
 
-//Dikerjakan Oleh Lutfi Harya Ferdian
+//Dikerjakan Oleh Indriazan Alkautsar
 
 bool findDiagonalKananBawah(const vector<vector<char>>& matriks, const string& word) {
     int baris = matriks.size();
